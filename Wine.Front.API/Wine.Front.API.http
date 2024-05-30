@@ -1,0 +1,6 @@
+@Wine.Front.API_HostAddress = http://localhost:5038
+
+GET {{Wine.Front.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
