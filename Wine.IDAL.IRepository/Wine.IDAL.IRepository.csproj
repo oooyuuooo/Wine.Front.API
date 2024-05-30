@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wine.Infa.Criteria\Wine.Infa.Criteria.csproj" />
+    <ProjectReference Include="..\Wine.Infa.Entity\Wine.Infa.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

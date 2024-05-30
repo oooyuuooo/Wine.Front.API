@@ -1,23 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Wine.BLL.Service\Wine.BLL.Service.csproj" />
-    <ProjectReference Include="..\Wine.DAL.EFRepository\Wine.DAL.EFRepository.csproj" />
     <ProjectReference Include="..\Wine.IDAL.IRepository\Wine.IDAL.IRepository.csproj" />
     <ProjectReference Include="..\Wine.Infa.Criteria\Wine.Infa.Criteria.csproj" />
-    <ProjectReference Include="..\Wine.Infa.Dto\Wine.Infa.Dto.csproj" />
     <ProjectReference Include="..\Wine.Infa.EFModel\Wine.Infa.EFModel.csproj" />
+    <ProjectReference Include="..\Wine.Infa.Entity\Wine.Infa.Entity.csproj" />
     <ProjectReference Include="..\Wine.Infa.Utility\Wine.Infa.Utility.csproj" />
   </ItemGroup>
 
