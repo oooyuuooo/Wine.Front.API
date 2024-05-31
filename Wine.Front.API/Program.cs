@@ -1,8 +1,15 @@
+using System.Globalization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Wine.Front.API.Models;
 using Wine.Infa.EFModel.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ³]¸m¬° InvariantCulture ¥HÁ×§K¿ù»~
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
