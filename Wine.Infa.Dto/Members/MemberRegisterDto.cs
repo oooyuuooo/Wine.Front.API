@@ -15,6 +15,6 @@ namespace Wine.Infa.Dto.Members
         public string ConfirmPassword { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

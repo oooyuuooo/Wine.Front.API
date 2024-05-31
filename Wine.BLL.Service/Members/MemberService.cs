@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Wine.IDAL.IRepository.Members;
 using Wine.Infa.Dto.Members;
@@ -38,6 +39,7 @@ namespace Wine.BLL.Service.Members
 
         public bool Register(MemberRegisterDto dto)
         {
+            DateOnly dateofBirth = DateOnly.FromDateTime(dto.DateOfBirth);
             MemberRegisterEntity entity = new MemberRegisterEntity
             {
                 Id = dto.Id,
@@ -46,13 +48,12 @@ namespace Wine.BLL.Service.Members
                 Name = dto.Name,
                 Email = dto.Email,
                 Phone = dto.Phone,
-                DateOfBirth = dto.DateOfBirth
+                DateOfBirth = dateofBirth
             };
 
-            //判斷帳號是否存在
+            //判斷帳號是否存在以及手機年齡符合規定
             var isExist = _repo.GetMember(entity.Account);
-
-            if (isExist != null)
+            if (isExist == null && Check(entity.Phone, entity.DateOfBirth, entity.Email))
             {
                 var result = _repo.Register(entity);
                 if (result != null)
@@ -63,6 +64,32 @@ namespace Wine.BLL.Service.Members
             }
 
             return false;
+        }
+
+        //驗證手機為09開頭以及生日大於18歲以及Email格式
+        private bool Check(string phone, DateOnly dateOfBirth, string email)
+        {
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            var age = today.Year - dateOfBirth.Year;
+
+            // 如果生日還沒到當前年份的今天，年齡要減一歲
+            if (dateOfBirth > today.AddYears(-age))
+            {
+                age--;
+            }
+
+            // 驗證手機
+            bool isPhoneValid = phone.Length == 10 && phone.StartsWith("09");
+
+            // 驗證年齡
+            bool isAgeValid = age >= 18;
+
+            // 驗證Email
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            bool isEmailValid = Regex.IsMatch(email, pattern);
+
+            //同時驗證手機年齡Email
+            return isPhoneValid && isAgeValid && isEmailValid;
         }
     }
 }
