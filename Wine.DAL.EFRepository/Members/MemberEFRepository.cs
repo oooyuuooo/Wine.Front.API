@@ -76,5 +76,19 @@ namespace Wine.DAL.EFRepository.Members
             _db.SaveChanges();
             return member.Id;
         }
+
+        public void Update(MemberRegisterEntity entity)
+        {
+            var member = _db.Members
+                .Where(m => m.Id == entity.Id)
+                .FirstOrDefault();
+
+            member.Name = entity.Name;
+            member.Password = entity.Password;
+            member.Email = entity.Email;
+            member.Phone = entity.Phone;
+            member.DateOfBirth = entity.DateOfBirth;
+            _db.SaveChanges();
+        }
     }
 }

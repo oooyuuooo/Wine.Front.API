@@ -12,5 +12,6 @@ namespace Wine.IDAL.IRepository.Members
         int Register(MemberRegisterEntity entity);
         MemberLoginEntity Login(string account, string password);
         MemberRegisterEntity GetMember(string account);
+        void Update(MemberRegisterEntity entity);
     }
 }

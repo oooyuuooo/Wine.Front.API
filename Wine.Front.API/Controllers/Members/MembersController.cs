@@ -28,10 +28,17 @@ namespace Wine.Front.API.Controllers.Members
         }
 
         [HttpPost("Register")]
-        public async Task<bool> Register([FromQuery] MemberRegisterDto dto)
+        public async Task<string> Register([FromQuery] MemberRegisterDto dto)
         {
             var result = _service.Register(dto);
             return result;
+        }
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> UpdateInfo([FromQuery] MemberRegisterDto dto)
+        {
+            _service.Update(dto);
+            return Ok();
         }
     }
 }
